@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Être: O Jogo do Francês</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-background: #0D0F16;
+            --card-bg: #1A1D2B;
+            --gradient-start: #4A1D9E;
+            --gradient-end: #1E1A53;
+            --accent-color: #B28CFF;
+            --text-color: #E2E8F0;
+            --title-font: 'Bruno Ace SC', sans-serif;
+            --body-font: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-background);
+            color: var(--text-color);
+            font-family: var(--body-font);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .gradient-background {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            min-height: 100vh;
+        }
+
+        .gaming-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 2px solid transparent;
+        }
+
+        .gaming-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            border-color: var(--accent-color);
+        }
+
+        .gaming-button {
+            background: linear-gradient(90deg, #6b46c1 0%, #a561ef 100%);
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .gaming-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+        }
+
+        .modal {
+            background: rgba(13, 15, 22, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body class="gradient-background">
+
+    <!-- Header (Netflix-like) -->
+    <header class="p-6 flex justify-between items-center z-10">
+        <div class="flex items-center space-x-4">
+            <svg class="w-10 h-10 text-accent-color" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2L2 22h20L12 2zm0 14.5L15.5 10H8.5L12 16.5z"/>
+            </svg>
+            <h1 class="text-3xl font-bold font-title uppercase tracking-widest text-white">ÊTRE: O JOGO</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center border-2 border-accent-color cursor-pointer">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A11.052 11.052 0 0112 15c2.348 0 4.505.748 6.379 2.062M15 10a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl sm:text-5xl md:text-6xl font-title text-white leading-tight mb-4">Bem-vindo(a) à sua Jornada Francesa</h2>
+            <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto">Explore as diferentes formas de usar o verbo mais importante do francês em situações do dia a dia. Escolha um "episódio" para começar.</p>
+        </div>
+
+        <!-- Episode Cards Section -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+            <!-- Card 1: Ser ou Estar -->
+            <div class="gaming-card p-6 flex flex-col items-center text-center">
+                <img src="https://placehold.co/400x250/333/fff?text=Caminhos+de+Paris" alt="Caminhos de Paris" class="rounded-lg mb-4 w-full h-40 object-cover">
+                <h3 class="text-2xl font-bold font-title text-accent-color mb-2">Episódio 1: Identidade</h3>
+                <p class="text-gray-400 flex-grow mb-4">Aprenda a se apresentar e a descrever quem você é ou o que você é. Situações como "Eu sou brasileiro" ou "Ela é professora".</p>
+                <button onclick="showLesson(1)" class="gaming-button">Começar</button>
+            </div>
+
+            <!-- Card 2: Localização -->
+            <div class="gaming-card p-6 flex flex-col items-center text-center">
+                <img src="https://placehold.co/400x250/333/fff?text=Onde+estou%3F" alt="Onde estou?" class="rounded-lg mb-4 w-full h-40 object-cover">
+                <h3 class="text-2xl font-bold font-title text-accent-color mb-2">Episódio 2: Localização</h3>
+                <p class="text-gray-400 flex-grow mb-4">O verbo 'être' também indica localização. Descubra como dizer "Estamos no Louvre" ou "Onde você está?".</p>
+                <button onclick="showLesson(2)" class="gaming-button">Começar</button>
+            </div>
+
+            <!-- Card 3: Descrição e Estado -->
+            <div class="gaming-card p-6 flex flex-col items-center text-center">
+                <img src="https://placehold.co/400x250/333/fff?text=Descobrindo+os+Sentimentos" alt="Descobrindo os Sentimentos" class="rounded-lg mb-4 w-full h-40 object-cover">
+                <h3 class="text-2xl font-bold font-title text-accent-color mb-2">Episódio 3: Descrição e Estado</h3>
+                <p class="text-gray-400 flex-grow mb-4">Use 'être' para descrever algo ou alguém e expressar emoções. Frases como "O filme é ótimo" ou "Ela está feliz".</p>
+                <button onclick="showLesson(3)" class="gaming-button">Começar</button>
+            </div>
+
+            <!-- Card 4: Profissão e Nacionalidade -->
+            <div class="gaming-card p-6 flex flex-col items-center text-center">
+                <img src="https://placehold.co/400x250/333/fff?text=Carreiras+e+Países" alt="Carreiras e Países" class="rounded-lg mb-4 w-full h-40 object-cover">
+                <h3 class="text-2xl font-bold font-title text-accent-color mb-2">Episódio 4: Profissão</h3>
+                <p class="text-gray-400 flex-grow mb-4">Aprenda a dizer qual a profissão ou nacionalidade de alguém. Como em "Eles são estudantes" ou "Nós somos franceses".</p>
+                <button onclick="showLesson(4)" class="gaming-button">Começar</button>
+            </div>
+
+            <!-- Card 5: Data e Hora -->
+            <div class="gaming-card p-6 flex flex-col items-center text-center">
+                <img src="https://placehold.co/400x250/333/fff?text=Que+horas+são%3F" alt="Que horas são?" class="rounded-lg mb-4 w-full h-40 object-cover">
+                <h3 class="text-2xl font-bold font-title text-accent-color mb-2">Episódio 5: Data e Hora</h3>
+                <p class="text-gray-400 flex-grow mb-4">Use 'être' para falar sobre a data e a hora. Por exemplo, "Que horas são?" ou "Hoje é segunda-feira".</p>
+                <button onclick="showLesson(5)" class="gaming-button">Começar</button>
+            </div>
+
+            <!-- Card 6: Passé Composé -->
+            <div class="gaming-card p-6 flex flex-col items-center text-center">
+                <img src="https://placehold.co/400x250/333/fff?text=Passado+e+Aventura" alt="Passado e Aventura" class="rounded-lg mb-4 w-full h-40 object-cover">
+                <h3 class="text-2xl font-bold font-title text-accent-color mb-2">Episódio 6: Passé Composé</h3>
+                <p class="text-gray-400 flex-grow mb-4">Explore o uso do 'être' como verbo auxiliar para verbos de movimento e verbos pronominais no passado composto.</p>
+                <button onclick="showLesson(6)" class="gaming-button">Começar</button>
+            </div>
+
+            <!-- Card 7: Voz Passiva -->
+            <div class="gaming-card p-6 flex flex-col items-center text-center">
+                <img src="https://placehold.co/400x250/333/fff?text=Ação+e+Consequência" alt="Ação e Consequência" class="rounded-lg mb-4 w-full h-40 object-cover">
+                <h3 class="text-2xl font-bold font-title text-accent-color mb-2">Episódio 7: Voz Passiva</h3>
+                <p class="text-gray-400 flex-grow mb-4">Aprenda a construir frases na voz passiva, descrevendo ações que acontecem a um sujeito. Ex: "O livro é lido."</p>
+                <button onclick="showLesson(7)" class="gaming-button">Começar</button>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Modal for Lesson -->
+    <div id="lesson-modal" class="modal fixed inset-0 flex items-center justify-center p-4 hidden z-20">
+        <div class="modal-content w-full max-w-2xl p-8 text-center relative">
+            <button onclick="hideLesson()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div id="lesson-content">
+                <!-- Content will be injected here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const lessons = {
+            1: {
+                title: "Episódio 1: Identidade",
+                scenarios: [
+                    { type: "fill-in-the-blank", question: "Imagine que você está em Paris se apresentando a um novo amigo. Como você diria 'Eu sou do Brasil'?", hint: "A forma do verbo para 'eu' é 'suis'.", correctAnswer: "suis", fullSentence: "Je suis brésilien(ne).", translation: "Eu sou brasileiro(a)." },
+                    { type: "fill-in-the-blank", question: "Você está descrevendo seu professor de francês para um colega. Como você diria 'Ele é muito inteligente'?", hint: "A forma do verbo para 'ele' é 'est'.", correctAnswer: "est", fullSentence: "Il est très intelligent.", translation: "Ele é muito inteligente." },
+                    { type: "fill-in-the-blank", question: "Uma nova pessoa chega na sua mesa e pergunta o que você faz. Como você diria 'Eu sou estudante'?", hint: "O verbo 'être' é usado para descrever a sua profissão.", correctAnswer: "suis", fullSentence: "Je suis étudiant(e).", translation: "Eu sou estudante." },
+                    { type: "fill-in-the-blank", question: "Você está falando de um colega seu. Como você diria 'Ele é muito gentil'?", hint: "O verbo 'être' é usado para descrever a personalidade.", correctAnswer: "est", fullSentence: "Il est très gentil.", translation: "Ele é muito gentil." },
+                    { type: "fill-in-the-blank", question: "Como você diria 'Ela é minha amiga'?", hint: "A forma para 'ela' é 'est'.", correctAnswer: "est", fullSentence: "Elle est mon amie.", translation: "Ela é minha amiga." },
+                    { type: "fill-in-the-blank", question: "Você está descrevendo seu grupo de amigos. Como você diria 'Nós somos felizes'?", hint: "A forma para 'nós' é 'sommes'.", correctAnswer: "sommes", fullSentence: "Nous sommes heureux.", translation: "Nós somos felizes." },
+                    { type: "fill-in-the-blank", question: "Você está se apresentando com um colega em uma entrevista. Como você diria 'Nós somos da França'?", hint: "A forma para 'nós' é 'sommes'.", correctAnswer: "sommes", fullSentence: "Nous sommes de France.", translation: "Nós somos da França." },
+                    { type: "fill-in-the-blank", question: "Você vê uma placa em Paris que descreve um prédio. Como você diria 'Este prédio é antigo'?", hint: "A forma para 'este' (Ce) é 'est'.", correctAnswer: "est", fullSentence: "Ce bâtiment est ancien.", translation: "Este prédio é antigo." },
+                    { type: "fill-in-the-blank", question: "Você está falando com um amigo sobre seus pais. Como você diria 'Eles são muito atenciosos'?", hint: "A forma para 'eles' é 'sont'.", correctAnswer: "sont", fullSentence: "Ils sont très attentifs.", translation: "Eles são muito atenciosos." },
+                    { type: "fill-in-the-blank", question: "Como você diria 'Vocês são brasileiros' para um grupo de amigos?", hint: "A forma para 'vocês' é 'êtes'.", correctAnswer: "êtes", fullSentence: "Vous êtes brésiliens.", translation: "Vocês são brasileiros." },
+                    { type: "full-sentence", question: "Traduza: 'Nós somos amigos.'", hint: "A conjugação para 'nós' é 'sommes'.", correctAnswer: "Nous sommes amis.", translation: "Nós somos amigos." },
+                    { type: "full-sentence", question: "Traduza: 'Eu sou alto.'", hint: "A conjugação para 'eu' é 'suis'.", correctAnswer: "Je suis grand(e).", translation: "Eu sou alto(a)." },
+                    { type: "full-sentence", question: "Traduza: 'Eles são professores de matemática.'", hint: "A conjugação para 'eles' é 'sont'.", correctAnswer: "Ils sont professeurs de mathématiques.", translation: "Eles são professores de matemática." },
+                    { type: "full-sentence", question: "Traduza: 'Você é uma pessoa gentil.'", hint: "A conjugação para 'você' (formal) é 'êtes'.", correctAnswer: "Vous êtes une personne gentille.", translation: "Você é uma pessoa gentil." },
+                    { type: "full-sentence", question: "Traduza: 'Ela é uma artista talentosa.'", hint: "A conjugação para 'ela' é 'est'.", correctAnswer: "Elle est une artiste talentueuse.", translation: "Ela é uma artista talentosa." }
+                ]
+            },
+            2: {
+                title: "Episódio 2: Localização",
+                scenarios: [
+                    { type: "fill-in-the-blank", question: "Você está com a sua família na frente da Torre Eiffel. Como você diria 'Nós estamos aqui'?", hint: "A forma para 'nós' é 'sommes'.", correctAnswer: "sommes", fullSentence: "Nous sommes ici.", translation: "Nós estamos aqui." },
+                    { type: "fill-in-the-blank", question: "No metrô, um turista te pergunta onde fica a estação. Como você diria 'A estação é ali'?", hint: "A forma para 'a estação' (la gare) é 'est'.", correctAnswer: "est", fullSentence: "La gare est là-bas.", translation: "A estação é ali." },
+                    { type: "fill-in-the-blank", question: "Você está ligando para seu amigo. Como você diria 'Onde você está?'?", hint: "A forma para 'você' é 'es'.", correctAnswer: "es", fullSentence: "Où tu es ?", translation: "Onde você está?" },
+                    { type: "fill-in-the-blank", question: "Você está em um restaurante com amigos. Como você diria 'Onde está o garçom?'?", hint: "A forma para 'o garçom' (le serveur) é 'est'.", correctAnswer: "est", fullSentence: "Où est le serveur ?", translation: "Onde está o garçom?" },
+                    { type: "fill-in-the-blank", question: "Você está descrevendo a sua casa. Como você diria 'Ela está no centro da cidade'?", hint: "A forma para 'ela' é 'est'.", correctAnswer: "est", fullSentence: "Elle est au centre-ville.", translation: "Ela está no centro da cidade." },
+                    { type: "fill-in-the-blank", question: "Você e um amigo estão perdidos em Paris. Como você diria 'Nós estamos perdidos'?", hint: "A forma para 'nós' é 'sommes'.", correctAnswer: "sommes", fullSentence: "Nous sommes perdus.", translation: "Nós estamos perdidos." },
+                    { type: "fill-in-the-blank", question: "Você vê as crianças no jardim. Como você diria 'Elas estão no jardim'?", hint: "A forma para 'elas' é 'sont'.", correctAnswer: "sont", fullSentence: "Elles sont dans le jardin.", translation: "Elas estão no jardim." },
+                    { type: "fill-in-the-blank", question: "Seu professor pergunta onde está o livro. Como você diria 'O livro está na mesa'?", hint: "A forma para 'o livro' (le livre) é 'est'.", correctAnswer: "est", fullSentence: "Le livre est sur la table.", translation: "O livro está na mesa." },
+                    { type: "fill-in-the-blank", question: "Um amigo te pergunta sobre a Torre Eiffel. Como você diria 'Ela está no Campo de Marte'?", hint: "A forma para 'ela' é 'est'.", correctAnswer: "est", fullSentence: "Elle est au Champ de Mars.", translation: "Ela está no Campo de Marte." },
+                    { type: "fill-in-the-blank", question: "Você está em uma loja de roupas com um amigo. Como você diria 'Onde estão as roupas?'?", hint: "A forma para 'as roupas' (les vêtements) é 'sont'.", correctAnswer: "sont", fullSentence: "Où sont les vêtements ?", translation: "Onde estão as roupas?" },
+                    { type: "full-sentence", question: "Traduza: 'O carro está na garagem.'", hint: "A conjugação para 'o carro' (la voiture) é 'est'.", correctAnswer: "La voiture est dans le garage.", translation: "O carro está na garagem." },
+                    { type: "full-sentence", question: "Traduza: 'Eles estão em casa.'", hint: "A conjugação para 'eles' é 'sont'.", correctAnswer: "Ils sont à la maison.", translation: "Eles estão em casa." },
+                    { type: "full-sentence", question: "Traduza: 'Eu estou no supermercado.'", hint: "A conjugação para 'eu' é 'suis'.", correctAnswer: "Je suis au supermarché.", translation: "Eu estou no supermercado." },
+                    { type: "full-sentence", question: "Traduza: 'Nós estamos no parque.'", hint: "A conjugação para 'nós' é 'sommes'.", correctAnswer: "Nous sommes au parc.", translation: "Nós estamos no parque." },
+                    { type: "full-sentence", question: "Traduza: 'O livro está sobre a mesa.'", hint: "A conjugação para 'o livro' (le livre) é 'est'.", correctAnswer: "Le livre est sur la table.", translation: "O livro está sobre a mesa." }
+                ]
+            },
+            3: {
+                title: "Episódio 3: Descrição e Estado",
+                scenarios: [
+                    { type: "fill-in-the-blank", question: "Você acabou de assistir a um filme e um amigo pergunta o que achou. Como você diria 'O filme é ótimo!'?", hint: "A forma para 'o filme' (le film) é 'est'.", correctAnswer: "est", fullSentence: "Le film est super !", translation: "O filme é ótimo!" },
+                    { type: "fill-in-the-blank", question: "Um amigo te pergunta como você está se sentindo hoje. Como você diria 'Eu estou cansado(a)'?", hint: "A forma para 'eu' é 'suis'.", correctAnswer: "suis", fullSentence: "Je suis fatigué(e).", translation: "Eu estou cansado(a)." },
+                    { type: "fill-in-the-blank", question: "Você e seus amigos estão muito felizes. Como você diria 'Nós estamos muito felizes'?", hint: "A forma para 'nós' é 'sommes'.", correctAnswer: "sommes", fullSentence: "Nous sommes très heureux.", translation: "Nós estamos muito felizes." },
+                    { type: "fill-in-the-blank", question: "Você vê uma linda vista da janela. Como você diria 'A vista é linda'?", hint: "A forma para 'a vista' (la vue) é 'est'.", correctAnswer: "est", fullSentence: "La vue est belle.", translation: "A vista é linda." },
+                    { type: "fill-in-the-blank", question: "Seu amigo está doente. Como você diria 'Ele está doente'?", hint: "A forma para 'ele' é 'est'.", correctAnswer: "est", fullSentence: "Il est malade.", translation: "Ele está doente." },
+                    { type: "fill-in-the-blank", question: "Você está descrevendo o clima de hoje. Como você diria 'O tempo está bom hoje'?", hint: "O verbo para descrever o tempo é 'il fait...', mas o 'être' também é usado para estados do tempo. A forma para 'o tempo' (le temps) é 'est'.", correctAnswer: "est", fullSentence: "Le temps est bon aujourd'hui.", translation: "O tempo está bom hoje." },
+                    { type: "fill-in-the-blank", question: "Você está falando com seu amigo sobre um livro. Como você diria 'O livro é interessante'?", hint: "A forma para 'o livro' (le livre) é 'est'.", correctAnswer: "est", fullSentence: "Le livre est intéressant.", translation: "O livro é interessante." },
+                    { type: "fill-in-the-blank", question: "Você e um amigo estão entediados. Como você diria 'Nós estamos entediados'?", hint: "A forma para 'nós' é 'sommes'.", correctAnswer: "sommes", fullSentence: "Nous sommes ennuyés.", translation: "Nós estamos entediados." },
+                    { type: "fill-in-the-blank", question: "Você vê que seus amigos estão prontos para sair. Como você diria 'Eles estão prontos'?", hint: "A forma para 'eles' é 'sont'.", correctAnswer: "sont", fullSentence: "Ils sont prêts.", translation: "Eles estão prontos." },
+                    { type: "fill-in-the-blank", question: "Você quer saber como seu amigo está se sentindo. Como você perguntaria 'Você está bem?'?", hint: "A forma para 'você' é 'es'.", correctAnswer: "es", fullSentence: "Tu es bien ?", translation: "Você está bem?" },
+                    { type: "full-sentence", question: "Traduza: 'O céu está azul.'", hint: "A conjugação para 'o céu' (le ciel) é 'est'.", correctAnswer: "Le ciel est bleu.", translation: "O céu está azul." },
+                    { type: "full-sentence", question: "Traduza: 'Ela está doente.'", hint: "A conjugação para 'ela' é 'est'.", correctAnswer: "Elle est malade.", translation: "Ela está doente." },
+                    { type: "full-sentence", question: "Traduza: 'Vocês estão cansados.'", hint: "A conjugação para 'vocês' é 'êtes'.", correctAnswer: "Vous êtes fatigués.", translation: "Vocês estão cansados." },
+                    { type: "full-sentence", question: "Traduza: 'Eu estou feliz.'", hint: "A conjugação para 'eu' é 'suis'.", correctAnswer: "Je suis heureux(se).", translation: "Eu estou feliz." },
+                    { type: "full-sentence", question: "Traduza: 'Eles são muito educados.'", hint: "A conjugação para 'eles' é 'sont'.", correctAnswer: "Ils sont très polis.", translation: "Eles são muito educados." }
+                ]
+            },
+            4: {
+                title: "Episódio 4: Profissão e Nacionalidade",
+                scenarios: [
+                    { type: "fill-in-the-blank", question: "Você está em um café e o garçom pergunta o que vocês fazem. Como você diria 'Nós somos estudantes'?", hint: "A forma para 'nós' é 'sommes'.", correctAnswer: "sommes", fullSentence: "Nous sommes étudiants.", translation: "Nós somos estudantes." },
+                    { type: "fill-in-the-blank", question: "Em uma festa, você conhece um novo grupo de amigos e um deles é francês. Como você diria 'Eles são franceses'?", hint: "A forma para 'eles' é 'sont'.", correctAnswer: "sont", fullSentence: "Ils sont français.", translation: "Eles são franceses." },
+                    { type: "fill-in-the-blank", question: "Você está preenchendo um formulário. Como você diria 'Eu sou brasileiro(a)'?", hint: "A forma para 'eu' é 'suis'.", correctAnswer: "suis", fullSentence: "Je suis brésilien(ne).", translation: "Eu sou brasileiro(a)." },
+                    { type: "fill-in-the-blank", question: "Você está descrevendo a profissão de seu pai. Como você diria 'Ele é médico'?", hint: "A forma para 'ele' é 'est'.", correctAnswer: "est", fullSentence: "Il est médecin.", translation: "Ele é médico." },
+                    { type: "fill-in-the-blank", question: "Você conhece uma nova colega de quarto em Paris. Como você diria 'Ela é canadense'?", hint: "A forma para 'ela' é 'est'.", correctAnswer: "est", fullSentence: "Elle est canadienne.", translation: "Ela é canadense." },
+                    { type: "fill-in-the-blank", question: "Você e um amigo estão em um país diferente. Como você diria 'Nós não somos de Paris'?", hint: "A forma para 'nós' é 'sommes'.", correctAnswer: "sommes", fullSentence: "Nous ne sommes pas de Paris.", translation: "Nós não somos de Paris." },
+                    { type: "fill-in-the-blank", question: "Você pergunta sobre a nacionalidade de um novo amigo. Como você perguntaria 'Você é americano?'?", hint: "A forma para 'você' é 'es'.", correctAnswer: "es", fullSentence: "Tu es américain ?", translation: "Você é americano?" },
+                    { type: "fill-in-the-blank", question: "Você está em um grupo de estudo. Como você diria 'Eles são professores'?", hint: "A forma para 'eles' é 'sont'.", correctAnswer: "sont", fullSentence: "Ils sont professeurs.", translation: "Eles são professores." },
+                    { type: "fill-in-the-blank", question: "Você está em um encontro formal e quer perguntar a profissão de alguém. Como você diria 'Você é engenheiro?'?", hint: "A forma formal para 'você' é 'êtes'.", correctAnswer: "êtes", fullSentence: "Vous êtes ingénieur ?", translation: "Você é engenheiro?" },
+                    { type: "fill-in-the-blank", question: "Você está falando sobre seus pais. Como você diria 'Meus pais são aposentados'?", hint: "A forma para 'meus pais' é 'sont'.", correctAnswer: "sont", fullSentence: "Mes parents sont retraités.", translation: "Meus pais são aposentados." },
+                    { type: "full-sentence", question: "Traduza: 'Meu pai é médico.'", hint: "A conjugação para 'mon père' é 'est'.", correctAnswer: "Mon père est médecin.", translation: "Meu pai é médico." },
+                    { type: "full-sentence", question: "Traduza: 'Nós somos estudantes.'", hint: "A conjugação para 'nós' é 'sommes'.", correctAnswer: "Nous sommes étudiants.", translation: "Nós somos estudantes." },
+                    { type: "full-sentence", question: "Traduza: 'Ela é americana.'", hint: "A conjugação para 'ela' é 'est'.", correctAnswer: "Elle est américaine.", translation: "Ela é americana." },
+                    { type: "full-sentence", question: "Traduza: 'Eles são engenheiros.'", hint: "A conjugação para 'eles' é 'sont'.", correctAnswer: "Ils sont ingénieurs.", translation: "Eles são engenheiros." },
+                    { type: "full-sentence", question: "Traduza: 'Eu sou brasileiro.'", hint: "A conjugação para 'eu' é 'suis'.", correctAnswer: "Je suis brésilien.", translation: "Eu sou brasileiro." }
+                ]
+            },
+            5: {
+                title: "Episódio 5: Data e Hora",
+                scenarios: [
+                    { type: "fill-in-the-blank", question: "Alguém te pergunta que dia da semana é hoje. Como você diria 'Hoje é terça-feira'?", hint: "A forma para 'hoje' é 'est'.", correctAnswer: "est", fullSentence: "Aujourd'hui, c'est mardi.", translation: "Hoje é terça-feira." },
+                    { type: "fill-in-the-blank", question: "Você precisa saber a hora exata. Como você diria 'São nove horas'?", hint: "A forma para 'são' (ils/elles) é 'sont'.", correctAnswer: "est", fullSentence: "Il est neuf heures.", translation: "São nove horas." },
+                    { type: "fill-in-the-blank", question: "Você está combinando um encontro. Como você diria 'É em uma segunda-feira'?", hint: "A forma para 'é' é 'est'.", correctAnswer: "est", fullSentence: "C'est un lundi.", translation: "É em uma segunda-feira." },
+                    { type: "fill-in-the-blank", question: "Você vê a data no calendário. Como você diria 'Nós estamos em 2024'?", hint: "A forma para 'nós' é 'sommes'.", correctAnswer: "sommes", fullSentence: "Nous sommes en 2024.", translation: "Nós estamos em 2024." },
+                    { type: "fill-in-the-blank", question: "Você está na fila do banco e pergunta a hora. Como você diria 'São duas horas da tarde'?", hint: "A forma para 'são' é 'est'.", correctAnswer: "est", fullSentence: "Il est deux heures de l'après-midi.", translation: "São duas horas da tarde." },
+                    { type: "fill-in-the-blank", question: "Você pergunta que horas um filme começa. A resposta é 'Começa às 20h'. Como você diria 'São 20h'?", hint: "A forma para 'são' é 'est'.", correctAnswer: "est", fullSentence: "Il est 20 heures.", translation: "São 20 horas." },
+                    { type: "fill-in-the-blank", question: "Você está esperando seus amigos para um jantar. Como você diria 'Já são 22h!'?", hint: "A forma para 'já são' é 'est'.", correctAnswer: "est", fullSentence: "Il est déjà 22 heures !", translation: "Já são 22h!" },
+                    { type: "fill-in-the-blank", question: "Como você diria 'Que dia é hoje?'?", hint: "A forma para 'é' é 'est'.", correctAnswer: "est", fullSentence: "Quel jour est-ce aujourd'hui ?", translation: "Que dia é hoje?" },
+                    { type: "fill-in-the-blank", question: "Você está falando sobre o clima de hoje. Como você diria 'Hoje é um dia ensolarado'?", hint: "A forma para 'é' é 'est'.", correctAnswer: "est", fullSentence: "C'est un jour ensoleillé aujourd'hui.", translation: "Hoje é um dia ensolarado." },
+                    { type: "fill-in-the-blank", question: "Como você diria 'Já é a metade do ano'?", hint: "A forma para 'é' é 'est'.", correctAnswer: "est", fullSentence: "C'est la moitié de l'année.", translation: "Já é a metade do ano." },
+                    { type: "full-sentence", question: "Traduza: 'Hoje é sexta-feira.'", hint: "Comece com 'Aujourd'hui,'.", correctAnswer: "Aujourd'hui, c'est vendredi.", translation: "Hoje é sexta-feira." },
+                    { type: "full-sentence", question: "Traduza: 'São dez horas da manhã.'", hint: "A frase começa com 'Il est'.", correctAnswer: "Il est dix heures du matin.", translation: "São dez horas da manhã." },
+                    { type: "full-sentence", question: "Traduza: 'É uma segunda-feira.'", hint: "A frase começa com 'C'est'.", correctAnswer: "C'est un lundi.", translation: "É uma segunda-feira." },
+                    { type: "full-sentence", question: "Traduza: 'Estamos em maio.'", hint: "A conjugação para 'nós' é 'sommes'.", correctAnswer: "Nous sommes en mai.", translation: "Estamos em maio." },
+                    { type: "full-sentence", question: "Traduza: 'O aniversário é amanhã.'", hint: "A frase começa com 'L'anniversaire est'.", correctAnswer: "L'anniversaire est demain.", translation: "O aniversário é amanhã." }
+                ]
+            },
+            6: {
+                title: "Episódio 6: Passé Composé",
+                scenarios: [
+                    { type: "fill-in-the-blank", question: "Você está contando a um amigo sobre sua viagem. Como você diria 'Eu fui para Paris'?", hint: "Verbos de movimento como 'aller' usam 'être' no passado. A forma para 'eu' é 'suis'.", correctAnswer: "suis", fullSentence: "Je suis allé(e) à Paris.", translation: "Eu fui para Paris." },
+                    { type: "fill-in-the-blank", question: "Você está descrevendo a rotina de um amigo. Como você diria 'Ela se levantou cedo'?", hint: "Verbos pronominais, como 'se lever', também usam 'être'. A forma para 'ela' é 'est'.", correctAnswer: "est", fullSentence: "Elle s'est levée tôt.", translation: "Ela se levantou cedo." },
+                    { type: "fill-in-the-blank", question: "Você e seus amigos voltaram de uma caminhada. Como você diria 'Nós voltamos para casa'?", hint: "A forma para 'nós' é 'sommes'.", correctAnswer: "sommes", fullSentence: "Nous sommes rentrés à la maison.", translation: "Nós voltamos para casa." },
+                    { type: "fill-in-the-blank", question: "Seus pais foram ao supermercado. Como você diria 'Eles foram ao supermercado'?", hint: "A forma para 'eles' é 'sont'.", correctAnswer: "sont", fullSentence: "Ils sont allés au supermarché.", translation: "Eles foram ao supermarché." },
+                    { type: "fill-in-the-blank", question: "Você pergunta para seu amigo se ele foi ao cinema. Como você diria 'Você foi ao cinema?'?", hint: "A forma para 'você' é 'es'.", correctAnswer: "es", fullSentence: "Tu es allé au cinéma ?", translation: "Você foi ao cinema?" },
+                    { type: "fill-in-the-blank", question: "Um amigo te pergunta sobre um grupo de colegas. Como você diria 'Eles saíram há 10 minutos'?", hint: "A forma para 'eles' é 'sont'.", correctAnswer: "sont", fullSentence: "Ils sont sortis il y a 10 minutes.", translation: "Eles saíram há 10 minutos." },
+                    { type: "fill-in-the-blank", question: "Você e sua família foram de férias para a praia. Como você diria 'Nós fomos à praia'?", hint: "A forma para 'nós' é 'sommes'.", correctAnswer: "sommes", fullSentence: "Nous sommes allés à la plage.", translation: "Nós fomos à praia." },
+                    { type: "fill-in-the-blank", question: "Um amigo pergunta se você voltou de férias. Como você diria 'Eu voltei ontem'?", hint: "A forma para 'eu' é 'suis'.", correctAnswer: "suis", fullSentence: "Je suis rentré(e) hier.", translation: "Eu voltei ontem." },
+                    { type: "fill-in-the-blank", question: "Você e seu grupo de amigos se encontram para tomar um café. Como você diria 'Nós nos encontramos às 10h'?", hint: "Verbo pronominal, a forma para 'nós' é 'sommes'.", correctAnswer: "sommes", fullSentence: "Nous nous sommes rencontrés à 10h.", translation: "Nós nos encontramos às 10h." },
+                    { type: "fill-in-the-blank", question: "Você está em um grupo e quer perguntar se eles foram ao restaurante. Como você diria 'Vocês foram ao restaurante?'?", hint: "A forma para 'vocês' é 'êtes'.", correctAnswer: "êtes", fullSentence: "Vous êtes allés au restaurant ?", translation: "Vocês foram ao restaurante?" },
+                    { type: "full-sentence", question: "Traduza: 'Ela voltou para casa.'", hint: "A frase começa com 'Elle est'.", correctAnswer: "Elle est rentrée à la maison.", translation: "Ela voltou para casa." },
+                    { type: "full-sentence", question: "Traduza: 'Eles chegaram ontem.'", hint: "A frase começa com 'Ils sont'.", correctAnswer: "Ils sont arrivés hier.", translation: "Eles chegaram ontem." },
+                    { type: "full-sentence", question: "Traduza: 'Eu nasci em 1990.'", hint: "A frase começa com 'Je suis'.", correctAnswer: "Je suis né(e) en 1990.", translation: "Eu nasci em 1990." },
+                    { type: "full-sentence", question: "Traduza: 'Nós saímos do restaurante.'", hint: "A frase começa com 'Nous sommes'.", correctAnswer: "Nous sommes sortis du restaurant.", translation: "Nós saímos do restaurante." },
+                    { type: "full-sentence", question: "Traduza: 'Você caiu da escada?'", hint: "A frase começa com 'Tu es'.", correctAnswer: "Tu es tombé de l'escalier ?", translation: "Você caiu da escada?" }
+                ]
+            },
+            7: {
+                title: "Episódio 7: Voz Passiva",
+                scenarios: [
+                    { type: "fill-in-the-blank", question: "Um quadro famoso está em exposição no Louvre. Como você diria 'O quadro é admirado por todos'?", hint: "A forma para 'o quadro' (le tableau) é 'est'.", correctAnswer: "est", fullSentence: "Le tableau est admiré par tout le monde.", translation: "O quadro é admirado por todo mundo." },
+                    { type: "fill-in-the-blank", question: "Você está descrevendo uma escultura que foi criada por Rodin. Como você diria 'A escultura foi criada por Rodin'?", hint: "A forma para 'a escultura' (la sculpture) no passado é 'a été'.", correctAnswer: "a été", fullSentence: "La sculpture a été créée par Rodin.", translation: "A escultura foi criada por Rodin." },
+                    { type: "fill-in-the-blank", question: "Você vê uma casa que foi vendida. Como você diria 'A casa foi vendida'?", hint: "A forma para 'a casa' (la maison) no passado é 'a été'.", correctAnswer: "a été", fullSentence: "La maison a été vendue.", translation: "A casa foi vendida." },
+                    { type: "fill-in-the-blank", question: "Você está falando sobre um livro que foi escrito. Como você diria 'O livro foi escrito em 1862'?", hint: "A forma para 'o livro' (le livre) no passado é 'a été'.", correctAnswer: "a été", fullSentence: "Le livre a été écrit en 1862.", translation: "O livro foi escrito em 1862." },
+                    { type: "fill-in-the-blank", question: "Você está na rua e vê um carro que está sendo consertado. Como você diria 'O carro está sendo consertado'?", hint: "A forma para 'o carro' (la voiture) no presente é 'est'.", correctAnswer: "est", fullSentence: "La voiture est en train d'être réparée.", translation: "O carro está sendo consertado." },
+                    { type: "fill-in-the-blank", question: "Você e seus amigos estão falando sobre um filme. Como você diria 'O filme foi assistido por milhões de pessoas'?", hint: "A forma para 'o filme' (le film) no passado é 'a été'.", correctAnswer: "a été", fullSentence: "Le film a été regardé par des millions de personnes.", translation: "O filme foi assistido por milhões de pessoas." },
+                    { type: "fill-in-the-blank", question: "Você está comendo em um restaurante e o garçom te pergunta se a comida foi servida. Como você diria 'A comida foi servida'?", hint: "A forma para 'a comida' (la nourriture) no passado é 'a été'.", correctAnswer: "a été", fullSentence: "La nourriture a été servie.", translation: "A comida foi servida." },
+                    { type: "fill-in-the-blank", question: "Você está descrevendo um jardim. Como você diria 'O jardim é regado todos os dias'?", hint: "A forma para 'o jardim' (le jardin) é 'est'.", correctAnswer: "est", fullSentence: "Le jardin est arrosé tous les jours.", translation: "O jardim é regado todos os dias." },
+                    { type: "fill-in-the-blank", question: "Você está na praia e fala sobre um castelo de areia que foi destruído. Como você diria 'O castelo de areia foi destruído pela maré'?", hint: "A forma para 'o castelo' (le château) no passado é 'a été'.", correctAnswer: "a été", fullSentence: "Le château de sable a été détruit par la marée.", translation: "O castelo de areia foi destruído pela maré." },
+                    { type: "fill-in-the-blank", question: "Você está em uma galeria de arte. Como você diria 'As fotos são exibidas'?", hint: "A forma para 'as fotos' (les photos) é 'sont'.", correctAnswer: "sont", fullSentence: "Les photos sont exposées.", translation: "As fotos são exibidas." },
+                    { type: "full-sentence", question: "Traduza: 'A carta é escrita por ele.'", hint: "A frase começa com 'La lettre'.", correctAnswer: "La lettre est écrite par lui.", translation: "A carta é escrita por ele." },
+                    { type: "full-sentence", question: "Traduza: 'O bolo foi comido por nós.'", hint: "A frase começa com 'Le gâteau a été'.", correctAnswer: "Le gâteau a été mangé par nous.", translation: "O bolo foi comido por nós." },
+                    { type: "full-sentence", question: "Traduza: 'A porta foi aberta.'", hint: "A frase começa com 'La porte'.", correctAnswer: "La porte a été ouverte.", translation: "A porta foi aberta." },
+                    { type: "full-sentence", question: "Traduza: 'Os presentes foram comprados por eles.'", hint: "A frase começa com 'Les cadeaux ont été'.", correctAnswer: "Les cadeaux ont été achetés par eux.", translation: "Os presentes foram comprados por eles." },
+                    { type: "full-sentence", question: "Traduza: 'A casa está sendo construída.'", hint: "A frase começa com 'La maison est'.", correctAnswer: "La maison est en train d'être construite.", translation: "A casa está sendo construída." }
+                ]
+            }
+        };
+
+        let currentLessonId = null;
+        let currentScenarioIndex = 0;
+
+        function showLesson(lessonId) {
+            currentLessonId = lessonId;
+            currentScenarioIndex = 0;
+            document.getElementById('lesson-modal').classList.remove('hidden');
+            renderScenario();
+        }
+
+        function hideLesson() {
+            document.getElementById('lesson-modal').classList.add('hidden');
+        }
+
+        function renderScenario() {
+            const lesson = lessons[currentLessonId];
+            if (!lesson) return;
+
+            const scenario = lesson.scenarios[currentScenarioIndex];
+            if (!scenario) {
+                // End of lesson
+                document.getElementById('lesson-content').innerHTML = `
+                    <h2 class="text-4xl font-bold font-title text-accent-color mb-4">Parabéns!</h2>
+                    <p class="text-lg text-gray-300 mb-6">Você completou todas as atividades do episódio "${lesson.title}".</p>
+                    <button onclick="hideLesson()" class="gaming-button">Voltar para o Menu</button>
+                `;
+                return;
+            }
+
+            let questionHtml = '';
+            if (scenario.type === 'fill-in-the-blank') {
+                questionHtml = `<p class="text-lg text-gray-400">${scenario.fullSentence.replace(scenario.correctAnswer, '___')}</p>`;
+            } else { // full-sentence
+                questionHtml = `<p class="text-lg text-gray-400">Traduza para o francês:</p>
+                                <p class="text-xl text-white font-semibold">${scenario.question.replace('Traduza: ', '')}</p>`;
+            }
+
+            const html = `
+                <h2 class="text-4xl font-bold font-title text-accent-color mb-4">${lesson.title}</h2>
+                <div class="bg-gray-800 p-6 rounded-lg text-left mb-6">
+                    <p class="text-xl mb-4 text-gray-300">Situação:</p>
+                    <p class="text-2xl text-white font-semibold">${scenario.question}</p>
+                </div>
+                <div class="flex flex-col items-center space-y-4">
+                    ${questionHtml}
+                    <input type="text" id="answer-input" class="w-full max-w-xs p-3 text-center bg-gray-700 text-white rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent-color" placeholder="Sua resposta aqui...">
+                    <button id="check-btn" onclick="checkAnswer()" class="gaming-button">Verificar</button>
+                </div>
+                <div id="feedback-message" class="mt-4 text-center"></div>
+                <button id="next-btn" onclick="nextScenario()" class="gaming-button mt-6 hidden">Próximo</button>
+            `;
+            document.getElementById('lesson-content').innerHTML = html;
+        }
+
+        function normalizeText(text) {
+            return text.toLowerCase().trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ");
+        }
+
+        function checkAnswer() {
+            const input = document.getElementById('answer-input');
+            const feedback = document.getElementById('feedback-message');
+            const nextBtn = document.getElementById('next-btn');
+            const checkBtn = document.getElementById('check-btn');
+            const lesson = lessons[currentLessonId];
+            const scenario = lesson.scenarios[currentScenarioIndex];
+
+            if (!input.value.trim()) {
+                feedback.innerHTML = `<p class="text-red-500 font-bold text-xl">Por favor, digite sua resposta.</p>`;
+                return;
+            }
+            
+            let isCorrect = false;
+            let expectedAnswer;
+
+            if (scenario.type === 'fill-in-the-blank') {
+                isCorrect = normalizeText(input.value) === normalizeText(scenario.correctAnswer);
+                expectedAnswer = scenario.correctAnswer;
+            } else { // full-sentence
+                isCorrect = normalizeText(input.value) === normalizeText(scenario.correctAnswer);
+                expectedAnswer = scenario.correctAnswer;
+            }
+
+            console.log("Valor digitado (normalizado):", normalizeText(input.value));
+            console.log("Resposta correta (normalizada):", normalizeText(expectedAnswer));
+
+            if (isCorrect) {
+                feedback.innerHTML = `<p class="text-green-500 font-bold text-xl">Correto! A resposta é <span class="text-white bg-green-700 rounded-lg p-1.5">${expectedAnswer}</span>.</p>
+                                      <p class="text-gray-400 mt-2">Tradução: ${scenario.translation}</p>`;
+                nextBtn.classList.remove('hidden');
+                checkBtn.classList.add('hidden');
+            } else {
+                feedback.innerHTML = `<p class="text-red-500 font-bold text-xl">Ops, tente novamente. Dica: ${scenario.hint}</p>`;
+            }
+        }
+
+        function nextScenario() {
+            currentScenarioIndex++;
+            renderScenario();
+        }
+    </script>
+</body>
+</html>
